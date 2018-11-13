@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>我的网站</title>
-</head>
-<body>
+{% extends 'basic.html'%}
+{% block title %}
+     我的网站
+{% endblock %}
 
-    <div>
-        <a href="{% url 'home' %}">
-            <h3>个人博客网站</h3>
-        </a>
-    </div>
-    <hr>
-
-
+{% block content %}
     {% for blog in blogs %}
     <a href="{% url 'blog_detail' blog.pk %}">
         <h4>{{ blog.title }}</h4>
@@ -23,11 +13,8 @@
      {% empty %}
     <p>-&#45;&#45;&#45;&#45;暂无博客，敬请期待&#45;&#45;&#45;&#45;&#45;&#45;</p>
     {% endfor %}
-<div>
-       <p>一共有博客{{ blogs|length }}篇</p>
+    <div>
+        <p>一共有博客{{ blogs|length }}篇</p>
         <p>第二获取数量的方法{{ blogs_count }}</p>
-
     </div>
-
-</body>
-</html>
+{% endblock %}
