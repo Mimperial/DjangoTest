@@ -1,0 +1,43 @@
+{% extends 'basic.html'%}
+{% block title %}
+     我的网站
+{% endblock %}
+
+{% block nav_blog_active %}active{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="row">
+        <div class="col-md-8">
+            {% for blog in blogs %}
+            <a href="{% url 'blog_detail' blog.pk %}">
+                <h4>{{ blog.title }}</h4>
+            </a>
+                <p>{{ blog.content|truncatechars:30 }}</p>
+                <!--<p>{{ blog.content|truncatewords:30 }}</p>-->
+             {% empty %}
+            <p>-&#45;&#45;&#45;&#45;暂无博客，敬请期待&#45;&#45;&#45;&#45;&#45;&#45;</p>
+            {% endfor %}
+            <div>
+                <p>一共有博客{{ blogs|length }}篇</p>
+                <p>一共有博客{{ blogs_count }}ps:篇第二获取数量的方法</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4>博客分类</h4>
+            <ul>
+                {% for blog_type in blog_types %}
+                <li>
+                    <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">
+                    {{ blog_type.type_name}}
+                    </a>
+                </li>
+                {% empty %}
+                    <li>暂无分类</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
