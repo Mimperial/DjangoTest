@@ -3,5 +3,8 @@
         padding:0;
     }
 body{
-margin-top:70px !important;
+margin:70px!important;
+}
+.blog-types{
+list-style-type:none
 }
